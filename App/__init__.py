@@ -2,7 +2,7 @@
 
 """
 --------------------------------------
-@File       : __init__.py.py
+@File       : __init__.py
 @Author     : maixiaochai
 @Email      : maixiaochai@outlook.com
 @Created on : 2020/4/26 22:05
@@ -10,12 +10,21 @@
 """
 from flask import Flask
 
-from App.views import blue
+from App.settings import envs
+from App.ext import init_ext
+from App.views import init_views
 
 
-def create_app():
+def create_app(env):
     app = Flask(__name__)
 
-    # 注册蓝图
-    app.register_blueprint(blue)
+    # 初始化配置
+    app.config.from_object(envs.get(env))
+
+    # 初始化扩展
+    init_ext(app)
+
+    # 初始化路由
+    init_views(app)
+
     return app
