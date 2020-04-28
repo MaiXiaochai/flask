@@ -2,7 +2,7 @@
 
 """
 --------------------------------------
-@File       : first_blue.py
+@File       : blue_first.py
 @Author     : maixiaochai
 @Email      : maixiaochai@outlook.com
 @Created on : 2020/4/27 9:11
@@ -14,28 +14,21 @@ from flask import Blueprint
 from App.models import models, User
 
 
-first_blue = Blueprint("blue", __name__)
+blue_first = Blueprint("blue", __name__)
 
 
-@first_blue.route("/<string:name>")
-def hello(name):
-    print(name)
-    print(type(name))
-    return "This is first blueprint, name: {}!".format(name)
-
-
-@first_blue.route("/")
+@blue_first.route("/")
 def hello_first():
     return "Hello Flask!"
 
 
-@first_blue.route("/create_db")
+@blue_first.route("/create_db")
 def create_db():
     models.create_all()
     return "DB created."
 
 
-@first_blue.route("/adduser")
+@blue_first.route("/adduser")
 def add_user():
     user = User()
     user.username = "Tom"
@@ -45,6 +38,14 @@ def add_user():
     return "用户添加成功！"
 
 
-@first_blue.errorhandler(404)
+@blue_first.route("/addusers")
+def add_users():
+    map_data = [dict(username="Tom-{}".format(i)) for i in range(10)]
+    models.session.bulk_insert_mappings(User, map_data)
+    models.session.commit()
+    return "多个用户添加成功！"
+
+
+@blue_first.errorhandler(404)
 def error_404():
     return "404, 非常抱歉！"

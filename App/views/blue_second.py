@@ -2,7 +2,7 @@
 
 """
 --------------------------------------
-@File       : second_blue.py
+@File       : blue_second.py
 @Author     : maixiaochai
 @Email      : maixiaochai@outlook.com
 @Created on : 2020/4/27 9:14
@@ -12,10 +12,10 @@
 from flask import Blueprint
 
 
-second_blue = Blueprint("second_blue", __name__)
+blue_second = Blueprint("blue_second", __name__)
 
 
-@second_blue.route("/second")
+@blue_second.route("/second")
 def hello_second(address):
     return "This is second blueprint, path: {}!".format(address)
 

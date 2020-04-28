@@ -9,12 +9,14 @@
 --------------------------------------
 """
 
-from .first_blue import first_blue
-from .second_blue import second_blue
-from .third_blue import third_blue
+from .blue_first import blue_first
+from .blue_second import blue_second
+from .blue_third import blue_third
+from .login import blue_login
 
 
 def init_views(app):
-    app.register_blueprint(first_blue)
-    app.register_blueprint(second_blue)
-    app.register_blueprint(third_blue)
+    app.register_blueprint(blue_first)
+    app.register_blueprint(blue_second)
+    app.register_blueprint(blue_third)
+    app.register_blueprint(blue_login)
