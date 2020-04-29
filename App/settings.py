@@ -31,7 +31,7 @@ class Config:
     DEBUG = False
     TESTING = False
     SECRET_KEY = "4)rzG[giX:{>)2>_Np'`X-Q&YZFzj@5-"
-    SESSION_USE_SIGNER = True       # 对发送到浏览器上的cookie进行加密
+    SESSION_USE_SIGNER = True     # 对发送到浏览器上的cookie进行加密
     SESSION_TYPE = "sqlalchemy"
     SQLALCHEMY_DATABASE_URI = "sqlite:///database.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = True

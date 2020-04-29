@@ -14,3 +14,15 @@ from App.ext import models
 class User(models.Model):
     id = models.Column(models.Integer, primary_key=True, autoincrement=True)
     username = models.Column(models.String(16))
+
+
+class Customer(models.Model):
+    id = models.Column(models.Integer, primary_key=True, autoincrement=True)
+    c_name = models.Column(models.String(30))
+
+
+class Address(models.Model):
+    id = models.Column(models.Integer, primary_key=True, autoincrement=True)
+    a_position = models.Column(models.String(128))
+    # 这里的外键中，传入的值为字符串也可以，"Customer.id"
+    a_customer_id = models.Column(models.Integer, models.ForeignKey(Customer.id))
