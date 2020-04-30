@@ -19,6 +19,7 @@ class User(models.Model):
 class Customer(models.Model):
     id = models.Column(models.Integer, primary_key=True, autoincrement=True)
     c_name = models.Column(models.String(30))
+    address = models.relationship("Address", backref="customer", lazy=True)
 
 
 class Address(models.Model):
@@ -26,3 +27,9 @@ class Address(models.Model):
     a_position = models.Column(models.String(128))
     # 这里的外键中，传入的值为字符串也可以，"Customer.id"
     a_customer_id = models.Column(models.Integer, models.ForeignKey(Customer.id))
+
+
+class News(models.Model):
+    id = models.Column(models.Integer, primary_key=True, autoincrement=True)
+    n_title = models.Column(models.String(32))
+    n_content = models.Column(models.String(256))

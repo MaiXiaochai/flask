@@ -15,5 +15,6 @@ from App import create_app
 env = environ.get("FLASK_ENV", "default")
 app = create_app(env)
 
+
 if __name__ == "__main__":
     app.run()

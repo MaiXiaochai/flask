@@ -10,8 +10,10 @@
 """
 from random import randrange
 
-from flask import Blueprint
+from flask import Blueprint, request, render_template
+from sqlalchemy import and_, or_
 
+from App.ext import cache
 from App.models import models, Customer, Address
 
 blue_second = Blueprint("blue_second", __name__)
@@ -45,3 +47,27 @@ def add_address():
     models.session.commit()
 
     return "[ {} ][ 地址添加成功 ]".format(res)
+
+
+@blue_second.route("/addrbyid")
+def get_addr_by_id():
+    c_id = request.args.get("id")
+    customer = Customer.query.get(c_id)
+    # addrs = Address.query.filter_by(a_customer_id=customer.id)
+    addrs = customer.address
+
+    return render_template("addrlist.html", addrs=addrs)
+
+
+@blue_second.route("/search")
+@cache.cached(timeout=60)
+def search():
+    # addrs = Address.query.filter(Address.a_customer_id == 9).filter(Address.a_position.endswith("4"))
+    addrs = Address.query.filter(
+        or_(
+            Address.a_customer_id == 9,
+            Address.a_position.endswith("4")
+        )
+    )
+    print("[ 从数据库查询。]")
+    return render_template("addrlist.html", addrs=addrs)

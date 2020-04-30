@@ -8,11 +8,8 @@
 @Created on : 2020/4/27 14:03
 --------------------------------------
 """
-from os.path import dirname, abspath
 
 from App.ext import models
-
-BASE_DIR = dirname(dirname(abspath(__file__)))
 
 
 def get_db_uri(db_info):
