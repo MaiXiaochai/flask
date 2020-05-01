@@ -11,7 +11,7 @@
 from time import time
 from random import randrange
 from os.path import dirname, abspath, join
-from base64 import standard_b64encode, standard_b64decode
+from base64 import standard_b64encode
 
 from flask import Blueprint, render_template, url_for, request
 
