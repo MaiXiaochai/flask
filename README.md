@@ -13,4 +13,5 @@ flask练习
         + 在生产环境部署
             + `pipenv install --ignore-pipfile`
             + 这时候会从`pipfile.lock`安装依赖包
-        
+    + 生成 `requirements.txt`  
+        `pipenv lock -r [--dev] > requirements.txt`
