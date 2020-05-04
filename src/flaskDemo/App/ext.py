@@ -14,11 +14,13 @@ from flask_migrate import Migrate
 from flask_session import Session
 from flask_caching import Cache
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_mail import Mail
 
 # SQLAlchemy 创建数据表，模型结构的修改，不会被映射到对应的数据表
 # Migrate 作用是将models的结构修改映射到数据库中
 models = SQLAlchemy()
 migrate = Migrate()
+mail = Mail()
 cache = Cache(config={
     "CACHE_TYPE": "simple"
 })
@@ -31,4 +33,5 @@ def init_ext(app):
     Session(app)
     # toolbar.init_app(app)
     cache.init_app(app)
+    mail.init_app(app)
 

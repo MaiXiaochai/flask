@@ -14,6 +14,7 @@ from .blue_second import blue_second
 from .blue_third import blue_third
 from .blue_encrypt import blue_news
 from .login import blue_login
+from .student import blue_student
 
 
 def init_views(app):
@@ -22,3 +23,4 @@ def init_views(app):
     app.register_blueprint(blue_third)
     app.register_blueprint(blue_login)
     app.register_blueprint(blue_news)
+    app.register_blueprint(blue_student)

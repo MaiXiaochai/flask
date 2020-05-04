@@ -10,6 +10,8 @@ flask = "*"
 flask-session = "*"
 flask-caching = "*"
 flask-debugtoolbar = "*"
+flask-mail = "*"
+flask-restful = "*"
 
 [packages]
 

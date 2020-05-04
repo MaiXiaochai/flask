@@ -13,7 +13,7 @@ from flask import Blueprint, request, render_template, Response, session
 blue_login = Blueprint("login", __name__)
 
 
-@blue_login.route("/login", methods=["GET", "POST"])
+@blue_login.route("/dblogin", methods=["GET", "POST"])
 def login():
     method = request.method
     if method == "GET":
