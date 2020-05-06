@@ -28,7 +28,7 @@ class Config:
     DEBUG = False
     TESTING = False
     SECRET_KEY = "4)rzG[giX:{>)2>_Np'`X-Q&YZFzj@5-"
-    SESSION_USE_SIGNER = True     # 对发送到浏览器上的cookie进行加密
+    SESSION_USE_SIGNER = True  # 对发送到浏览器上的cookie进行加密
     SESSION_TYPE = "sqlalchemy"
     SQLALCHEMY_DATABASE_URI = "sqlite:///sqlite.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = True
@@ -37,7 +37,7 @@ class Config:
     # 邮箱配置
     MAIL_SERVER = "smtp.163.com"
     # 163 SSL协议端口 465/994, 非SSL协议端口25
-    # 注意这里启用的是TLS协议(transport layer security)，而不是SSL协议所以用的是25号端口
+    # 注意这里启用的是TLS协议(transport layer security)，而不是SSL协议所用的是25号端口
     MAIL_PORT = 25
     MAIL_USE_TLS = True
     MAIL_USERNAME = "chargestarmap@163.com"

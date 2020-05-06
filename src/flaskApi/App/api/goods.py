@@ -9,6 +9,7 @@
 --------------------------------------
 """
 from flask import request
+from flask_restful.reqparse import RequestParser
 from flask_restful import Resource, abort, fields, marshal_with
 
 from App.models import Goods
@@ -25,8 +26,7 @@ goods_fields = {
 single_goods_fields = {
     "data": fields.Nested(goods_fields),
     "status": fields.Integer,
-    "msg": fields.String(default="ok"),
-    "others": fields.String
+    "msg": fields.String(default="ok")
 }
 
 multi_goods_fields = {
@@ -35,49 +35,12 @@ multi_goods_fields = {
     "data": fields.List(fields.Nested(goods_fields))
 }
 
+parser = RequestParser()
+parser.add_argument("g_name", type=str, required=True, help="缺少g_name或者g_name值为空")
+parser.add_argument("g_price")
+
 
 class GoodsResource(Resource):
-    """
-    JSON格式
-        Response
-        1)单个对象
-            {
-                "status": 200,
-                "msg": "ok",
-                "data": {
-                    "key1": "value1",
-                    "key2": "value2",
-                    "key3": "value3",
-                    ...
-                }
-            }
-        2)多个对象
-            {
-                "status": 200,
-                "msg": "ok",
-                "data": [
-                    {
-                        "key1": "value1",
-                        "key2": "value2",
-                        "key3": "value3",
-                        ...
-                    },
-                    {
-                        "key1": "value1",
-                        "key2": "value2",
-                        "key3": "value3",
-                        ...
-                    },
-                    {
-                        "key1": "value1",
-                        "key2": "value2",
-                        "key3": "value3",
-                        ...
-                    },
-                    ...
-                ]
-            }
-    """
 
     @marshal_with(multi_goods_fields)
     def get(self):
@@ -91,8 +54,11 @@ class GoodsResource(Resource):
 
     @marshal_with(single_goods_fields)
     def post(self):
-        g_name = request.form.get("g_name")
-        g_price = request.form.get("g_price")
+        # g_name = request.form.get("g_name")
+        # g_price = request.form.get("g_price")
+        args = parser.parse_args()
+        g_name = args.get("g_name")
+        g_price = args.get("g_price")
 
         goods = Goods()
         goods.g_name = g_name
@@ -130,14 +96,17 @@ class SingleGoodsResource(Resource):
         goods = Goods.query.get(id)
 
         if not goods:
-            abort(404)
+            # abort(http_status_code, **kwargs)
+            # kwargs 的内容会被添加到返回的信息中
+            abort(404, message="goods doesn't exist.", msg="fail")
 
         if not goods.delete():
             abort(400)
 
         data = {
             "msg": "Deleted",
-            "status": 204
+            "status": 204,
+            "data": goods
         }
 
         return data
