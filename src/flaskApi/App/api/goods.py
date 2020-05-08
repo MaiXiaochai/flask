@@ -20,7 +20,7 @@ goods_fields = {
     "g_price": fields.Float,
     # api.add_resource(SingleGoodsResource, "/goods/<int:id>", endpoint="single_goods")
     # 自己开发的时候可以加，上线之后别加
-    "url": fields.Url("single_goods")
+    # "url": fields.Url("single_goods")
 }
 
 single_goods_fields = {
@@ -54,6 +54,7 @@ class GoodsResource(Resource):
 
     @marshal_with(single_goods_fields)
     def post(self):
+        # 从 args
         # g_name = request.form.get("g_name")
         # g_price = request.form.get("g_price")
         args = parser.parse_args()
