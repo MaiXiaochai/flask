@@ -2,7 +2,7 @@
 
 """
 --------------------------------------
-@File       : api_user.py
+@File       : api_movie_user.py
 @Author     : maixiaochai
 @Email      : maixiaochai@outlook.com
 @Created on : 2020/5/4 15:54

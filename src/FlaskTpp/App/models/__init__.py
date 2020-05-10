@@ -10,18 +10,18 @@
 """
 
 
-from App.ext import models
+from App.ext import db
 
 
-class BaseModel(models.Model):
+class BaseModel(db.Model):
     __abstract__ = True
-    id = models.Column(models.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     def save(self):
         result = False
         try:
-            models.session.add(self)
-            models.session.commit()
+            db.session.add(self)
+            db.session.commit()
             result = True
         except Exception as err:
             pass
@@ -31,8 +31,8 @@ class BaseModel(models.Model):
     def delete(self):
         result = False
         try:
-            models.session.delete(self)
-            models.session.commit()
+            db.session.delete(self)
+            db.session.commit()
             result = True
         except Exception as err:
             pass

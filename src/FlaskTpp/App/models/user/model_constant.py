@@ -2,10 +2,11 @@
 
 """
 --------------------------------------
-@File       : user.py
+@File       : model_constant.py
 @Author     : maixiaochai
 @Email      : maixiaochai@outlook.com
-@Created on : 2020/5/9 13:31
+@Created on : 2020/5/10 15:47
 --------------------------------------
 """
 
+PERMISSION_NONE = 0

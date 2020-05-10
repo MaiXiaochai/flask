@@ -15,7 +15,7 @@ from flask_caching import Cache
 
 # SQLAlchemy 创建数据表，模型结构的修改，不会被映射到对应的数据表
 # Migrate 作用是将models的结构修改映射到数据库中
-models = SQLAlchemy()
+db = SQLAlchemy()
 migrate = Migrate()
 cache = Cache(config={
     "CACHE_TYPE": "simple"
@@ -23,7 +23,7 @@ cache = Cache(config={
 
 
 def init_ext(app):
-    models.init_app(app)
-    migrate.init_app(app, models)
+    db.init_app(app)
+    migrate.init_app(app, db)
     Session(app)
     cache.init_app(app)

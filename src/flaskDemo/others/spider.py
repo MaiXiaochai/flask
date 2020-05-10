@@ -20,8 +20,8 @@ def resp(url):
 
 
 def selector(response):
-    selector = etree.HTML(response.content)
-    paths = selector.xpath("//li[@class='clearfix j-url-list']/a/@data-url")
+    e_content = etree.HTML(response.content)
+    paths = e_content.xpath("//li[@class='clearfix j-url-list']/a/@data-url")
     return paths
 
 

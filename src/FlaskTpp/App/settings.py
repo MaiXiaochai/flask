@@ -9,7 +9,7 @@
 --------------------------------------
 """
 
-from App.ext import models
+from App.ext import db
 
 
 def get_db_uri(db_info):
@@ -32,7 +32,7 @@ class Config:
     SESSION_TYPE = "sqlalchemy"
     SQLALCHEMY_DATABASE_URI = "sqlite:///sqlite.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = True
-    SESSION_SQLALCHEMY = models
+    SESSION_SQLALCHEMY = db
 
     # 邮箱配置
     MAIL_SERVER = "smtp.163.com"
