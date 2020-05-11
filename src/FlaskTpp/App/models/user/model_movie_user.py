@@ -12,7 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from App.ext import db
 from App.models import BaseModel
-from App.models.user.model_constant import PERMISSION_NONE
+from App.models.models_constant import *
 
 
 class User(BaseModel):
@@ -32,3 +32,11 @@ class User(BaseModel):
 
     def check_password(self, passwd):
         return check_password_hash(self._password, passwd)
+
+    def check_permission(self, permission):
+        # 权限值与运算判断权限，
+        # 与之后，相同，则有权限，不同则无权限
+        if (BLACK_USER & self.permission) == BLACK_USER:
+            return False
+        else:
+            return permission & self.permission == permission

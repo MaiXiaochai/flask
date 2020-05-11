@@ -50,6 +50,7 @@ class MovieUserResource(Resource):
         action = args.get("action", "-").lower()
         password = args.get("password")
 
+        # 用户注册
         if action == USER_ACTION_REGISTER:
             args_register = parser_register.parse_args()
 
@@ -68,6 +69,7 @@ class MovieUserResource(Resource):
             }
             return marshal(data, user_fields)
 
+        # 用户登录
         elif action == USER_ACTION_LOGIN:
             args_login = parser_login.parse_args()
             username = args_login.get("username")
@@ -85,7 +87,7 @@ class MovieUserResource(Resource):
                 abort(401, msg="用户已标记为注销")
 
             token = uuid.uuid4().hex
-            cache.set(token, user.id, timeout=60 * 60 * 24 * 7)
+            cache.set(token, user.id)
 
             data = {
                 "msg": "login success",

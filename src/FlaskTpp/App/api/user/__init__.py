@@ -11,9 +11,10 @@
 from flask_restful import Api
 
 from App.api.user.api_movie_user import MovieUserResource
-from App.api.user.api_movie_order import MovieOrderResource
+from App.api.user.api_movie_order import MovieOrdersResource, MovieOrderResource
 
 api_user = Api(prefix="/users")
 
-api_user.add_resource(MovieUserResource, "/")
-api_user.add_resource(MovieOrderResource, "/orders")
+api_user.add_resource(MovieUserResource, "")
+api_user.add_resource(MovieOrdersResource, "/orders")
+api_user.add_resource(MovieOrderResource, "/orders/<int:order_id>")

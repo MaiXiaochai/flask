@@ -34,7 +34,16 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SESSION_SQLALCHEMY = db
 
-    # 邮箱配置
+    # # 缓存设置
+    # 缓存类型
+    CACHE_TYPE = "filesystem"
+    # 缓存类型为"filesystem"时，该值要指定。
+    # 注意：指定的是目录，不是文件
+    CACHE_DIR = "cache"
+    # 缓存数据超时时间(seconds)
+    CACHE_DEFAULT_TIMEOUT = 60 * 60 * 12
+
+    # # 邮箱配置
     MAIL_SERVER = "smtp.163.com"
     # 163 SSL协议端口 465/994, 非SSL协议端口25
     # 注意这里启用的是TLS协议(transport layer security)，而不是SSL协议所用的是25号端口

@@ -17,9 +17,7 @@ from flask_caching import Cache
 # Migrate 作用是将models的结构修改映射到数据库中
 db = SQLAlchemy()
 migrate = Migrate()
-cache = Cache(config={
-    "CACHE_TYPE": "simple"
-})
+cache = Cache()
 
 
 def init_ext(app):
