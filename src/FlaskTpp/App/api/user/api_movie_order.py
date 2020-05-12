@@ -9,34 +9,26 @@
 --------------------------------------
 """
 from flask import g
-from flask_restful import Resource, abort
+from flask_restful import Resource
 
-from App.api.api_utils import login_required
-from App.models.models_constant import VIP_USER
+from App.api.api_utils import required_login, required_permission
+from App.models.models_constant import USER_VIP
 
 
 class MovieOrdersResource(Resource):
-    @login_required
+    @required_login
     def post(self):
         user = g.user
         data = {
-            "msg": "{}, post order ok".format(user.username)
+            "msg": "订单获取成功."
         }
 
         return data
 
 
 class MovieOrderResource(Resource):
-    @login_required
+    @required_permission(USER_VIP)
     def put(self, order_id):
-
-        user = g.user
-
-        if not user.check_permission(VIP_USER):
-            # 401, 身份验证是错的
-            # 403，身份正确，但是权限不通过
-            abort(403, msg="Permission denied.")
-
         data = {
             "msg": "order change success"
         }

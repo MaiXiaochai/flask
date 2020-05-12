@@ -22,10 +22,12 @@ parser_base = RequestParser()
 parser_base.add_argument("password", type=str, required=True, help="请输入密码")
 parser_base.add_argument("action", type=str, required=True, help="请输入要进行的事项")
 
+# 注册用args
 parser_register = parser_base.copy()
 parser_register.add_argument("username", type=str, required=True, help="请输入用户名")
 parser_register.add_argument("phone", type=str, required=True, help="请输入手机号")
 
+# 登录用args, 区别在于username和phone字段中去掉了required=True
 parser_login = parser_base.copy()
 parser_login.add_argument("username", type=str, help="请输入用户名")
 parser_login.add_argument("phone", type=str, help="请输入手机号")
@@ -45,6 +47,9 @@ user_fields = {
 
 class MovieUserResource(Resource):
     def post(self):
+        """
+        用户注册和登录
+        """
         args = parser_base.parse_args()
 
         action = args.get("action", "-").lower()
@@ -55,12 +60,12 @@ class MovieUserResource(Resource):
             args_register = parser_register.parse_args()
 
             user = User()
-            user.username = args.get("username")
+            user.username = args_register.get("username")
             user.password = password
             user.phone = args_register.get("phone")
 
             if not user.save():
-                abort(400, msg="Create failed.")
+                abort(400, msg="用户注册失败.")
 
             data = {
                 "status": HTTP_CREATE_OK,

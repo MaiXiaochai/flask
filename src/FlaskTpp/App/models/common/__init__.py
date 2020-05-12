@@ -2,16 +2,10 @@
 
 """
 --------------------------------------
-@File       : models_constant.py
+@File       : __init__.py.py
 @Author     : maixiaochai
 @Email      : maixiaochai@outlook.com
-@Created on : 2020/5/10 15:47
+@Created on : 2020/5/12 18:34
 --------------------------------------
 """
-# 权限值
-USER_COMMON = 0
-USER_BLACK = 1
-USER_VIP = 2
 
-# 通用msg
-MSG_403 = "Permission denied."

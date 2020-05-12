@@ -20,7 +20,7 @@ class User(BaseModel):
     _password = db.Column(db.String(256))
     phone = db.Column(db.String(32), unique=True)
     is_deleted = db.Column(db.Boolean, default=False)
-    permission = db.Column(db.Integer, default=PERMISSION_NONE)
+    permission = db.Column(db.Integer, default=USER_COMMON)
 
     @property
     def password(self):
@@ -36,7 +36,7 @@ class User(BaseModel):
     def check_permission(self, permission):
         # 权限值与运算判断权限，
         # 与之后，相同，则有权限，不同则无权限
-        if (BLACK_USER & self.permission) == BLACK_USER:
+        if (USER_BLACK & self.permission) == USER_BLACK:
             return False
         else:
             return permission & self.permission == permission

@@ -41,7 +41,7 @@ class Config:
     # 注意：指定的是目录，不是文件
     CACHE_DIR = "cache"
     # 缓存数据超时时间(seconds)
-    CACHE_DEFAULT_TIMEOUT = 60 * 60 * 12
+    CACHE_DEFAULT_TIMEOUT = 60 * 60 * 24 * 30
 
     # # 邮箱配置
     MAIL_SERVER = "smtp.163.com"

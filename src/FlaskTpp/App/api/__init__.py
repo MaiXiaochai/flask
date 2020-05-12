@@ -10,6 +10,7 @@
 """
 from App.api.admin import api_admin
 from App.api.cinema import api_cinema
+from App.api.common import api_common
 from App.api.user import api_user
 
 
@@ -17,3 +18,4 @@ def init_api(app):
     api_admin.init_app(app)
     api_cinema.init_app(app)
     api_user.init_app(app)
+    api_common.init_app(app)
