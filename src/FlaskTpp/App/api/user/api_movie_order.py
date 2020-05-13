@@ -12,13 +12,16 @@ from flask import g
 from flask_restful import Resource
 
 from App.api.api_utils import required_login, required_permission
-from App.models.models_constant import USER_VIP
+from App.models.model_constant import USER_VIP
 
 
 class MovieOrdersResource(Resource):
     @required_login
     def post(self):
-        user = g.user
+        """
+        获取订单
+        http://127.0.0.1:5000/users/orders?token=764ae3383e6a4267ac58cfab741bf495
+        """
         data = {
             "msg": "订单获取成功."
         }
@@ -29,8 +32,12 @@ class MovieOrdersResource(Resource):
 class MovieOrderResource(Resource):
     @required_permission(USER_VIP)
     def put(self, order_id):
+        """
+        修改订单
+        http://127.0.0.1:5000/users/orders/1?token=764ae3383e6a4267ac58cfab741bf495
+        """
         data = {
-            "msg": "order change success"
+            "msg": "订单修改成功."
         }
 
         return data

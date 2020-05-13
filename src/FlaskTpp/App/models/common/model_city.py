@@ -17,9 +17,9 @@ class Letter(BaseModel):
 
 
 class City(BaseModel):
-    letter = db.Column(db.String(1), db.ForeignKey(Letter.id))
+    letter_id = db.Column(db.Integer, db.ForeignKey(Letter.id))
     c_id = db.Column(db.Integer, default=0)
     parent_id = db.Column(db.Integer, default=0)
     region_name = db.Column(db.String(16))
     city_code = db.Column(db.Integer, default=0)
-    c_pinyin = db.Column(db.String(64))
+    pinyin = db.Column(db.String(64))

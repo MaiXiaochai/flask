@@ -8,4 +8,4 @@
 @Created on : 2020/5/9 13:31
 --------------------------------------
 """
-
+from .model_admin_user import AdminUser

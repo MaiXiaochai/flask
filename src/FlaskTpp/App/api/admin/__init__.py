@@ -10,4 +10,7 @@
 """
 from flask_restful import Api
 
+from App.api.admin.api_admin_user import AdminUserResource
+
 api_admin = Api(prefix="/admin")
+api_admin.add_resource(AdminUserResource, "/users")

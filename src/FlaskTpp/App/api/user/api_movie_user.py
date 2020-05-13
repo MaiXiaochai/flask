@@ -15,8 +15,8 @@ from flask_restful.reqparse import RequestParser
 
 from App.api.api_constant import *
 from App.ext import cache
-from App.models.model_utils import get_user
-from App.models.user import User
+from App.models.model_utils import get_movie_user
+from App.models.user import MovieUser
 
 parser_base = RequestParser()
 parser_base.add_argument("password", type=str, required=True, help="请输入密码")
@@ -59,7 +59,7 @@ class MovieUserResource(Resource):
         if action == USER_ACTION_REGISTER:
             args_register = parser_register.parse_args()
 
-            user = User()
+            user = MovieUser()
             user.username = args_register.get("username")
             user.password = password
             user.phone = args_register.get("phone")
@@ -80,7 +80,7 @@ class MovieUserResource(Resource):
             username = args_login.get("username")
             phone = args_login.get("phone")
 
-            user = get_user(username) or get_user(phone)
+            user = get_movie_user(username) or get_movie_user(phone)
 
             if not user:
                 abort(400, msg="用户不存在")
@@ -95,7 +95,7 @@ class MovieUserResource(Resource):
             cache.set(token, user.id)
 
             data = {
-                "msg": "login success",
+                "msg": "登录成功",
                 "status": HTTP_OK,
                 "token": token
             }

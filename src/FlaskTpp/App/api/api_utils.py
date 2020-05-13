@@ -8,12 +8,13 @@
 @Created on : 2020/5/11 1:32
 --------------------------------------
 """
+
 from flask import request, g
 from flask_restful import abort
 
 from App.ext import cache
-from App.models.model_utils import get_user
-from App.models.models_constant import MSG_403
+from App.models.model_utils import get_movie_user
+from App.models.model_constant import MSG_403
 
 
 def _verify():
@@ -25,7 +26,7 @@ def _verify():
     if not user_id:
         abort(401, msg="user not available")
 
-    user = get_user(user_id)
+    user = get_movie_user(user_id)
     if not user:
         abort(401, msg="user not available")
 
@@ -64,3 +65,12 @@ def required_permission(permission):
         return wrapper
 
     return require_permission_wrapper
+
+
+def file_data(file_path):
+    """
+    读取文件中的数据
+    """
+    with open(file_path, "r", encoding="utf-8") as f:
+        data = f.read()
+        return data

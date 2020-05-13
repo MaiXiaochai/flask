@@ -9,4 +9,4 @@
 --------------------------------------
 """
 
-from .model_movie_user import User
+from .model_movie_user import MovieUser
