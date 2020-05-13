@@ -154,3 +154,6 @@ speed-measure-plugin*.json
 ######Pycharm#########
 **/.idea/
 **/__pycache__
+
+# MindManager Temp file
+*.~$lock
