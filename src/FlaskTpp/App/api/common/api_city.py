@@ -13,9 +13,9 @@ from json import loads
 from flask_restful import Resource, abort, fields, marshal
 from flask_restful.reqparse import RequestParser
 
-from App.api.api_constant import USER_ACTION_ADD_CITY, HTTP_OK
+from App.api.api_constant import USER_ACTION_ADD_CITY, HTTP_OK, USER_TYPE_MOVIE
 from App.api.api_utils import required_login, file_data
-from App.models.common.model_city import City, Letter
+from App.models.common import City, Letter
 
 parser_city = RequestParser()
 parser_city.add_argument("action", type=str, help="请输入动作")
@@ -32,7 +32,7 @@ city_fields = {
 class CitiesResource(Resource):
     """
     插入城市数据到数据库中
-    http://127.0.0.1:5000/common/cities?action=add_city&token=764ae3383e6a4267ac58cfab741bf495
+    http://127.0.0.1:5000/common/cities?action=add_city&token=movie_userebe6401abc564df487d6295743c30f40
     """
 
     def get(self):
@@ -53,7 +53,7 @@ class CitiesResource(Resource):
         }
         return data
 
-    @required_login
+    @required_login(USER_TYPE_MOVIE)
     def post(self):
         action = parser_city.parse_args().get("action")
         file_path = "App/data/cities.json"
@@ -95,7 +95,7 @@ class CitiesResource(Resource):
                         city.parent_id = _city.get("parentId")
                         city.region_name = _city.get("regionName")
                         city.city_code = _city.get("cityCode")
-                        city.c_pinyin = _city.get("pinYin")
+                        city.pinyin = _city.get("pinYin")
 
                         city.save()
                         count_city += 1

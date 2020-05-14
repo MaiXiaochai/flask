@@ -8,10 +8,10 @@
 @Created on : 2020/5/4 15:54
 --------------------------------------
 """
-from App.api.admin import api_admin
-from App.api.cinema import api_cinema
-from App.api.common import api_common
-from App.api.user import api_user
+from .admin import api_admin
+from .cinema import api_cinema
+from .user import api_user
+from .common import api_common
 
 
 def init_api(app):

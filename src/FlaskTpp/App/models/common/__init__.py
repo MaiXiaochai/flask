@@ -8,4 +8,5 @@
 @Created on : 2020/5/12 18:34
 --------------------------------------
 """
-
+from .model_city import Letter, City
+from .model_movie import Movies

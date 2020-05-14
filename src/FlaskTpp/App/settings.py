@@ -8,8 +8,11 @@
 @Created on : 2020/4/27 14:03
 --------------------------------------
 """
+from os.path import dirname, abspath, join
 
 from App.ext import db
+
+BASE_DIR = dirname(dirname(abspath(__file__)))
 
 
 def get_db_uri(db_info):
@@ -120,3 +123,14 @@ envs = {
     "production": ProductConfig,
     "default": DevelopConfig,
 }
+
+# 管理员用户设置
+ADMINS = (
+    "snail",
+)
+
+# 静态文件路径
+UPLOAD_DIR = join(BASE_DIR, "App/static/upload/icons")
+
+# 相对文件路径
+FILE_PATH = "/static/upload/icons"

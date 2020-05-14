@@ -11,7 +11,9 @@
 
 from flask_restful import Api
 
-from App.api.common.api_city import CitiesResource
+from .api_city import CitiesResource
+from .api_movie import MoviesResource
 
 api_common = Api(prefix="/common")
 api_common.add_resource(CitiesResource, "/cities")
+api_common.add_resource(MoviesResource, "/movies")

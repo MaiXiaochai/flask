@@ -17,6 +17,7 @@ from App.api.api_constant import *
 from App.ext import cache
 from App.models.model_utils import get_movie_user
 from App.models.user import MovieUser
+from App.utils import gen_token_movie_user
 
 parser_base = RequestParser()
 parser_base.add_argument("password", type=str, required=True, help="请输入密码")
@@ -91,7 +92,7 @@ class MovieUserResource(Resource):
             if user.is_deleted:
                 abort(401, msg="用户已标记为注销")
 
-            token = uuid.uuid4().hex
+            token = gen_token_movie_user()
             cache.set(token, user.id)
 
             data = {

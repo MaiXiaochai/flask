@@ -18,6 +18,8 @@ from App.api.api_constant import *
 from App.ext import cache
 from App.models.model_utils import get_admin_user
 from App.models.admin import AdminUser
+from App.settings import ADMINS
+from App.utils import gen_token_admin_user
 
 parser_admin = RequestParser()
 parser_admin.add_argument("password", type=str, required=True, help="请输入密码")
@@ -49,15 +51,18 @@ class AdminUserResource(Resource):
         登录：
             http://127.0.0.1:5000/admin/users?action=login
             {
-                "username": "admin",
+                "username": "snail",
                 "password": "123"
             }
             Response:
                 {
                     "msg": "login success",
                     "status": 200,
-                    "token": "8c68005c93f048dbbfbe73770a2add53"
+                    "token": "admin_userd6cff5606bda4ebfa31554b76be1f296"
                 }
+            超级管理员:
+                snail/123
+                admin_userd6cff5606bda4ebfa31554b76be1f296
         """
         args = parser_admin.parse_args()
 
@@ -69,8 +74,12 @@ class AdminUserResource(Resource):
             args_register = parser_admin.parse_args()
 
             admin_user = AdminUser()
-            admin_user.username = args_register.get("username")
+            username = args_register.get("username")
+            admin_user.username = username
             admin_user.password = password
+
+            if username in ADMINS:
+                admin_user.is_supper = True
 
             if not admin_user.save():
                 abort(400, msg="用户注册失败.")
@@ -98,7 +107,7 @@ class AdminUserResource(Resource):
             if admin_user.is_deleted:
                 abort(401, msg="用户已标记为注销")
 
-            token = uuid.uuid4().hex
+            token = gen_token_admin_user()
             cache.set(token, admin_user.id)
 
             data = {
