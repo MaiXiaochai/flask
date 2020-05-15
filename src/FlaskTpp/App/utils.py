@@ -8,7 +8,10 @@
 @Created on : 2020/5/14 18:09
 --------------------------------------
 """
+from datetime import datetime
 from uuid import uuid4
+
+from werkzeug.utils import secure_filename
 
 from App.api.api_constant import USER_TYPE_MOVIE, USER_TYPE_ADMIN, USER_TYPE_CINEMA
 from App.settings import UPLOAD_DIR, FILE_PATH
@@ -41,9 +44,19 @@ def filename_transfer(filename):
     :param filename:        str                 原始文件名称
     :return:                tuple/(str, str)    (绝对路径， 相对路径)
     """
+    filename = secure_filename(filename)
     suffix = filename.rsplit(".", 1)[-1]
     new_name = "{}.{}".format(uuid4().hex, suffix)
     abs_path = "{}/{}".format(UPLOAD_DIR, new_name)
     rel_path = "{}/{}".format(FILE_PATH, new_name)
 
     return abs_path, rel_path
+
+
+def str_to_date(str_date):
+    """
+    字符串时间
+    :param str_date:        str         字符串时间
+    :return:                datetime    datetime 时间
+    """
+    return datetime.strptime(str_date, "%Y-%m-%d %H:%M:%S")

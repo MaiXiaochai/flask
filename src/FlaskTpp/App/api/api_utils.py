@@ -31,7 +31,7 @@ def _verify(user_type):
 
         elif _type == USER_TYPE_ADMIN:
             func = get_admin_user
-            print("USER_TYPE_ADMIN")
+
         return func
 
     def check_token(_token, _type):
