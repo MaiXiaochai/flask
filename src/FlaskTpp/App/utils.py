@@ -8,12 +8,11 @@
 @Created on : 2020/5/14 18:09
 --------------------------------------
 """
-from openpyxl import Workbook
 from datetime import datetime
+from random import sample
 from uuid import uuid4
 
-from random import sample
-
+from openpyxl import Workbook
 from werkzeug.utils import secure_filename
 
 from App.api.api_constant import USER_TYPE_MOVIE, USER_TYPE_ADMIN, USER_TYPE_CINEMA

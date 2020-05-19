@@ -2,7 +2,7 @@
 
 """
 --------------------------------------
-@File       : __init__.py.py
+@File       : __init__.py
 @Author     : maixiaochai
 @Email      : maixiaochai@outlook.com
 @Created on : 2020/5/12 18:34

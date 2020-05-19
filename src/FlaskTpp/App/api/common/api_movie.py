@@ -8,7 +8,6 @@
 @Created on : 2020/5/14 11:08
 --------------------------------------
 """
-
 from flask_restful import Resource, abort, marshal, fields
 from flask_restful.reqparse import RequestParser
 from werkzeug.datastructures import FileStorage
