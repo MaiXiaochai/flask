@@ -8,9 +8,6 @@
 @Created on : 2020/5/13 23:03
 --------------------------------------
 """
-
-import uuid
-
 from flask_restful import Resource, abort, fields, marshal
 from flask_restful.reqparse import RequestParser
 
